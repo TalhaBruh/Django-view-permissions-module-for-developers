@@ -1,0 +1,9 @@
+# # # # # # # # # # # #
+#
+#  Quality Requirements.
+#
+# # # # # # # # # # # #
+
+isort
+pycodestyle
+pylint

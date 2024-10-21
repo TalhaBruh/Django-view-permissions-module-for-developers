@@ -1,0 +1,12 @@
+# # # # # # # # # # #
+#
+#  Test Requirements.
+#
+# # # # # # # # # # #
+
+-r base.txt
+
+ddt
+pytest
+pytest-cov
+pytest-django

@@ -1,0 +1,10 @@
+# # # # # # # # # # #
+#
+#  Docs Requirements.
+#
+# # # # # # # # # # #
+
+sphinx
+sphinx_rtd_theme
+twine
+wheel

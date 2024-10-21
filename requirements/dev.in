@@ -1,0 +1,11 @@
+# # # # # # # # # # #
+#
+#  Dev Requirements.
+#
+# # # # # # # # # # #
+
+-r base.txt
+-r test.txt
+-r quality.txt
+-r compatibility.txt
+-r docs.txt

@@ -1,0 +1,37 @@
+sudo: false
+language: python
+python:
+- 3.5
+- 3.6
+- 3.7
+- 3.8
+env:
+- TOX_ENV=django3
+- TOX_ENV=django22
+- TOX_ENV=django21
+- TOX_ENV=django20
+- TOX_ENV=django111
+matrix:
+  include:
+  - python: 3.6
+    env: TOX_ENV=quality
+  exclude:
+  - python: 3.5
+    env: TOX_ENV=django3
+before_install:
+- pip install -U pip wheel codecov
+install:
+- pip install -r requirements/compatibility.txt
+script:
+- tox -e $TOX_ENV
+after_success:
+- codecov
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  skip_existing: true
+  on:
+    tags: true
+  user: __token__
+  password:
+    secure: DNu9z3onyhIp6RDS5sZysODhfI7dk2NPHjk6TIq7fRFvMfMhw8AITwP31nIFPtITBu/kUZhUGyxhAXYrSpRFUe+g5okHdsiJrGtLBkK9aw6jg6QCw7INtcM1pQzorJDTXbkUwbdF7agNnJ6WaKiaD1PNV/Kb9sTabEEZ23HAB0bn0wgInECOkzjoN6NdakVUENu/FD34StzHfBX1v0TdOKwLZU/9qnOUHdKZudVrNseRwoQiuAFwMrLa5O2LUqgXA8h3Ba+0m/ArS4nea3AoralnttI/2AQlJfdBzqFe+00pTINtP3OWVye1gyEestWZ3xMiYtF0MjjUTcKJdvek3AevU2niMpvvHos/EjON2O8Ns6ifqX2S52rG0Zd2XN16b/ivmpqWIQfcJqhIgnFgZbTFiWt4AbJ5ktZRq91r3tRW9vWua3R+Uhaw7KTJP8Q/ZJf6s1U+ozVcqOAIoFkY+xueuPBSER6T+LlAXIgGvgsTIyrErn8CN7vVN+Hb68eb8s+iub2+l2OSMlmtPzQstC3gU3ZB+gqKKUWnUpPnlkVsaFTJWsib0WBN0z1gR2FYlp1xADUgoW883mRVXkaEX74vPCneyq08UimLxdiezHoKbZDvgSWQP+aH3AZcy9F8UqM6hBO/yHpIcu+2eoVyQ5P0vGvSuSurB8f5oz1/pT8=
